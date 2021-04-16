@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "**Read these instructions carefully. Understand exactly what is expected _before_ starting this Sprint Challenge.**",
   "main": "index.js",
+  "type": "commonjs",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --verbose --watchAll"

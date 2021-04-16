@@ -222,6 +222,7 @@ artists[8].name = 'Vincent Van Gogh';
 console.log(artists[8].name);
 
 
+
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 3: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
  Use getArtistByIndex to do the following:
  1. Receive an array
@@ -260,7 +261,6 @@ function get20s(array) {
 
   return result;
 }
-
 console.log(get20s(artists));
 
 
@@ -278,6 +278,7 @@ function removeArtist(array, index) {
   array.splice(index, 1);
   return array.length;
 }
+
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -321,14 +322,16 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(array) {
-  const prolific = array.filter(artist => artist.paintings > 100);
-  const names = prolific.map(artist => artist.name);
+  const prolific = [];
 
-  return names;
+  for (const a of array) {
+    if (a.paintings > 100)
+      prolific.push(a.name);
+  }
+
+  return prolific;
 }
-
 console.log(lotsOfArt(artists));
-
 
 
 
@@ -357,7 +360,7 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 function getHTML(data) {
   for (const d of data) {
-    const html = `<div id="artist">
+    const item = `<div id="artist">
     <div class="image">
     <img src="assets/${d.name.replace(" ", "-")}"/>
     </div>
@@ -366,10 +369,11 @@ function getHTML(data) {
     </div>
     <div class = "bio">${d.bio}</div>
     </div>`;
-
-    console.log(html);
+    console.log(item);
   }
 }
+
+//getHTML(artists);
 
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
@@ -388,11 +392,34 @@ function randomize(array) {
   return shuffled;
 }
 
+const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const shuffled = randomize(numbers);
+
+console.log(shuffled);
 
 /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
 Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
+// Task 4
+function get20sAdvanced(array) {
+  return array.filter((a) => {
+    const years = a.years.split(" - ");
+    const born = parseInt(years[0]);
+    const died = parseInt(years[1]);
 
+    return born >= 1900 && died <= 2000;
+  });
+}
+console.log(get20sAdvanced(artists));
+
+// Task 7
+function lotsOfArtAdvanced(array) {
+  const prolific = array.filter(artist => artist.paintings > 100);
+  const names = prolific.map(artist => artist.name);
+
+  return names;
+}
+console.log(lotsOfArtAdvanced(artists));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
