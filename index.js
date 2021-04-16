@@ -251,6 +251,8 @@ If correct, the function should return ["Salvador Dali", "Frida Kahlo"]*/
 function get20s(array) {
   const result = [];
   for (const a of array) {
+    // Artist birth and death years are stored in array.years, as text
+    // The years need to be seperated and converted to "number" for comparison 
     const years = a.years.split(" - ");
     const born = parseInt(years[0]);
     const died = parseInt(years[1]);
@@ -322,13 +324,18 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(array) {
+  // Create an array build our response in
   const prolific = [];
 
+  // loop through the input array
   for (const a of array) {
+    // if an artist has more than 100 paintings...
     if (a.paintings > 100)
+      // ...push their name onto the response array...
       prolific.push(a.name);
   }
 
+  // ...and return it
   return prolific;
 }
 console.log(lotsOfArt(artists));
@@ -379,13 +386,21 @@ function getHTML(data) {
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
+// This is (a poorly remembered and unoptimized) fisher-yates shuffle
 function randomize(array) {
+  // create a copy of the array, so elements can be removed without altering the source array
   const copy = [...array]
+  // create an empty array to build our shuffled list
   const shuffled = []
 
+  // This for loop is backwords, counting down from {array.length - 1} to 0
   for (let i = array.length - 1; i >= 0; i--) {
+    // get a random number from 0 - i 
+    // i in this case also representing the number of items left on the copied array
     const randIndex = Math.floor(Math.random() * i);
+    // push that nth item from the copied array onto the shuffled list
     shuffled.push(copy[randIndex]);
+    // and remove it from the copy
     copy.splice(randIndex, 1);
   }
 
@@ -397,16 +412,23 @@ const shuffled = randomize(numbers);
 
 console.log(shuffled);
 
+// I did this from memory, and now that I'm actually looking up the algorithm and newer verions of it, there's a number of things
+// that could be altered for performance, but it's functionally the same. Splicing out single items from the copied list will be
+// time-consuming with longer arrays though!
+
 /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
 Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
 // Task 4
 function get20sAdvanced(array) {
+  // we can create a function to determine if the birth/death years of the artist are in range, and use that with array.filter()
+  // filter() takes a function that accepts an item from the array and returns true if it should be included on the filtered list
   return array.filter((a) => {
     const years = a.years.split(" - ");
     const born = parseInt(years[0]);
     const died = parseInt(years[1]);
 
+    // skip the if statements and return the boolean directly
     return born >= 1900 && died <= 2000;
   });
 }
@@ -414,13 +436,31 @@ console.log(get20sAdvanced(artists));
 
 // Task 7
 function lotsOfArtAdvanced(array) {
+  // the filter function here returns true if the artist has painted more than 100 paintings
   const prolific = array.filter(artist => artist.paintings > 100);
+  // array.map lets you build an array from running each item through a function
+  // in this case, the map function takes an artist object and returns the artists name
   const names = prolific.map(artist => artist.name);
 
   return names;
 }
 console.log(lotsOfArtAdvanced(artists));
 
+/* I have a lot more experience with C# and Python than I do with JavaScript, and my some favorite features of those languages
+ are list comprehension (python) and Linq to Objects (C#)
+
+    prolific = [ a.name for a in artists if a.paintings > 100 ]
+
+    var prolific = from a in artists
+                   where a.Paintings > 100
+                   select a.Name;
+                   
+  Both are a lot easier to read than the JS equivalent.
+
+  I don't know why I'm writing this, other than to say that JS is ugly looking language. :)
+
+  TypeScript is even uglier.
+*/
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
 function foo() {
