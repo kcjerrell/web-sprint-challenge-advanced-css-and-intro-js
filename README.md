@@ -23,9 +23,15 @@ Commit your code regularly and meaningfully.
 Please answer the following questions below, you may edit the readme file to include your answers below the question.
 
 1. How would you describe acessibility on the web to someone new to programming?
+    * Accessibility features are strategies we use so more people can use our website or software, regardless of any impairment or disability. This includes things like captions for the hearing impaired and screen readers for the visually impaired. 
 2. Talk about 3 different things you can do to ensure your website is accessible.
+    * Include alt text for all images. Use aria tags for background images and other elements that have important information that should be "read" to the user with a screen reader.
+    * Build your page using semantic html tags, in a meaningful order.
+    * Ensure all interactive elements of your interface are reachable without a mouse, using the keyboard only.
 3. How would you explain the concept of a variable to someone new to programming?
+    * A variable is a reference to a piece of data. We can manipulate these references, and the data they refer to, to perform advanced computations and build functional and/or interactive software.
 4. What is the purpose of using functions in code?
+    * Functions allow us to perform the same operations on different data or inputs. It helps bundle our code into reusable components, which can be composed to develop more robust platforms and interfaces.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
@@ -60,7 +66,7 @@ After finishing your required elements, you can push your work further. These go
 
 * [ ] Website is responsive at multiple breakpoints and looks good in-between breakpoints because student is using responsive units of measurement where appropriate. Student is using most semantic HTML for each element on page and has included ARIA roles where applicable (More research may be required to implement ARIA roles)
 * [ ] Student demonstrates and can explain a deep understanding of basic programming concepts when walking Team Lead through the explanation of their code.
-* [ ] Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) - do this seperate from your MVP tasks
+* [x] Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) - do this seperate from your MVP tasks
 
 
 ## Resources
