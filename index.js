@@ -324,7 +324,7 @@ Use lotsOfArt to do the following:
 For example lotsOfArt(artists); will return ["Amedeo Modigliani", "Rene Magritte", ... "Albrecht Dürer"]*/
 
 function lotsOfArt(array) {
-  // Create an array build our response in
+  // Create an array to build our response in
   const prolific = [];
 
   // loop through the input array
@@ -339,6 +339,8 @@ function lotsOfArt(array) {
   return prolific;
 }
 console.log(lotsOfArt(artists));
+
+// I talk more about this in the refactored version in Stretch 3.
 
 
 
@@ -386,36 +388,24 @@ function getHTML(data) {
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-// This is (a poorly remembered and unoptimized) fisher-yates shuffle
-function randomize(array) {
-  // create a copy of the array, so elements can be removed without altering the source array
-  const copy = [...array]
-  // create an empty array to build our shuffled list
-  const shuffled = []
-
-  // This for loop is backwords, counting down from {array.length - 1} to 0
-  for (let i = array.length - 1; i >= 0; i--) {
-    // get a random number from 0 - i 
-    // i in this case also representing the number of items left on the copied array
-    const randIndex = Math.floor(Math.random() * i);
-    // push that nth item from the copied array onto the shuffled list
-    shuffled.push(copy[randIndex]);
-    // and remove it from the copy
-    copy.splice(randIndex, 1);
+function randomize(array) {                             // This is (a poorly remembered and unoptimized) fisher-yates shuffle
+  const copy = [...array]                               // create a copy of the array, so elements can be removed without altering the source array  
+  const shuffled = []                                   // create an empty array to build our shuffled list
+  
+  for (let i = array.length - 1; i >= 0; i--) {         // counting down from {array.length - 1} to 0
+    const randIndex = Math.floor(Math.random() * i);    // get a random number from 0 - i    
+    shuffled.push(copy[randIndex]);                     // push that nth item from the copied array onto the shuffled list
+    copy.splice(randIndex, 1);                          // and remove it from the copy
   }
-
-  return shuffled;
-}
-
+                                                        // I did this from memory, and now that I'm actually looking up the algorithm and newer 
+  return shuffled;                                      // verions of it, there's a number of things that could be altered for performance, but 
+}                                                       // it's functionally the same. Splicing out single items from the copied list will be 
+                                                        // time-consuming with longer arrays though!
 const numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 const shuffled = randomize(numbers);
-
 console.log(shuffled);
 
-// I did this from memory, and now that I'm actually looking up the algorithm and newer verions of it, there's a number of things
-// that could be altered for performance, but it's functionally the same. Splicing out single items from the copied list will be
-// time-consuming with longer arrays though!
-
+                                                                                                                                                                                                                                
 /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
 Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
